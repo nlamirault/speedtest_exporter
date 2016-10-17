@@ -105,7 +105,7 @@ func init() {
 func main() {
 	var (
 		showVersion   = flag.Bool("version", false, "Print version information.")
-		listenAddress = flag.String("web.listen-address", ":9111", "Address to listen on for web interface and telemetry.")
+		listenAddress = flag.String("web.listen-address", ":9112", "Address to listen on for web interface and telemetry.")
 		metricsPath   = flag.String("web.telemetry-path", "/metrics", "Path under which to expose metrics.")
 		configURL     = flag.String("speedtest.config-url", "http://c.speedtest.net/speedtest-config.php?x="+uniuri.New(), "Speedtest configuration URL")
 		serverURL     = flag.String("speedtest.server-url", "http://c.speedtest.net/speedtest-servers-static.php?x="+uniuri.New(), "Speedtest server URL")
