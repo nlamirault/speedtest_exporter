@@ -1,4 +1,4 @@
-// Copyright (C) 2016 Nicolas Lamirault <nicolas.lamirault@gmail.com>
+// Copyright (C) 2016, 2017 Nicolas Lamirault <nicolas.lamirault@gmail.com>
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -61,7 +61,7 @@ type Exporter struct {
 
 // NewExporter returns an initialized Exporter.
 func NewExporter(config string, server string, interval time.Duration) (*Exporter, error) {
-	log.Infoln("Setup Speedtest client with interval %s", interval)
+	log.Infof("Setup Speedtest client with interval %s", interval)
 	client, err := speedtest.NewClient(config, server)
 	if err != nil {
 		return nil, fmt.Errorf("Can't create the Speedtest client: %s", err)
@@ -105,7 +105,7 @@ func init() {
 func main() {
 	var (
 		showVersion   = flag.Bool("version", false, "Print version information.")
-		listenAddress = flag.String("web.listen-address", ":9111", "Address to listen on for web interface and telemetry.")
+		listenAddress = flag.String("web.listen-address", ":9112", "Address to listen on for web interface and telemetry.")
 		metricsPath   = flag.String("web.telemetry-path", "/metrics", "Path under which to expose metrics.")
 		configURL     = flag.String("speedtest.config-url", "http://c.speedtest.net/speedtest-config.php?x="+uniuri.New(), "Speedtest configuration URL")
 		serverURL     = flag.String("speedtest.server-url", "http://c.speedtest.net/speedtest-servers-static.php?x="+uniuri.New(), "Speedtest server URL")
