@@ -1,4 +1,4 @@
-// Copyright (C) 2016 Nicolas Lamirault <nicolas.lamirault@gmail.com>
+// Copyright (C) 2016, 2017 Nicolas Lamirault <nicolas.lamirault@gmail.com>
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,8 +18,13 @@ import (
 	"time"
 
 	"github.com/prometheus/common/log"
+	"github.com/zpeters/speedtest/print"
 	"github.com/zpeters/speedtest/sthttp"
 	"github.com/zpeters/speedtest/tests"
+)
+
+const (
+	userAgent = "speedtest_exporter"
 )
 
 // Client defines the Speedtest client
@@ -34,8 +39,8 @@ type Client struct {
 func NewClient(configURL string, serversURL string) (*Client, error) {
 	log.Debugf("New Speedtest client %s %s", configURL, serversURL)
 	configTimeout, _ := time.ParseDuration("15s")
-	latencyTimeout, _ := time.ParseDuration("15s")
-	downloadTimeout, _ := time.ParseDuration("15s")
+	// latencyTimeout, _ := time.ParseDuration("15s")
+	// downloadTimeout, _ := time.ParseDuration("15s")
 	stClient := sthttp.NewClient(
 		&sthttp.SpeedtestConfig{
 			ConfigURL:       configURL,
@@ -44,27 +49,38 @@ func NewClient(configURL string, serversURL string) (*Client, error) {
 			NumClosest:      3,
 			NumLatencyTests: 5,
 			Interface:       "",
-			Blacklist:       "",
+			Blacklist:       []string{},
+			UserAgent:       userAgent,
 		},
 		&sthttp.HTTPConfig{
-			ConfigTimeout:   configTimeout,
-			LatencyTimeout:  latencyTimeout,
-			DownloadTimeout: downloadTimeout,
+			// ConfigTimeout:   configTimeout,
+			// LatencyTimeout:  latencyTimeout,
+			// DownloadTimeout: downloadTimeout,
+			HTTPTimeout: configTimeout,
 		},
 		true,
 		"|")
 
+	log.Debug("Retrieve configuration")
+	config, err := stClient.GetConfig()
+	if err != nil {
+		return nil, err
+	}
+	stClient.Config = &config
+
+	print.EnvironmentReport(stClient)
+
 	log.Debugf("Retrieve all servers")
 	var allServers []sthttp.Server
-	allServers, err := stClient.GetServers()
+	allServers, err = stClient.GetServers()
 	if err != nil {
 		return nil, err
 	}
 
-	log.Debugf("Retrieve closest servers")
 	closestServers := stClient.GetClosestServers(allServers)
-	log.Debugf("Find test server")
+	// log.Infof("Closest Servers: %s", closestServers)
 	testServer := stClient.GetFastestServer(closestServers)
+	log.Infof("Test server: %s", testServer)
 
 	return &Client{
 		Server:          testServer,
@@ -78,11 +94,14 @@ func (client *Client) NetworkMetrics() map[string]float64 {
 	result := map[string]float64{}
 	tester := tests.NewTester(client.SpeedtestClient, tests.DefaultDLSizes, tests.DefaultULSizes, false, false)
 	downloadMbps := tester.Download(client.Server)
+	log.Infof("Speedtest Download: %v Mbps", downloadMbps)
 	uploadMbps := tester.Upload(client.Server)
+	log.Infof("Speedtest Upload: %v Mbps", uploadMbps)
 	ping := client.Server.Latency
+	log.Infof("Speedtest Latency: %v ms", ping)
 	result["download"] = downloadMbps
 	result["upload"] = uploadMbps
 	result["ping"] = ping
-	log.Debugf("Speedtest results: %s", result)
+	log.Infof("Speedtest results: %s", result)
 	return result
 }
