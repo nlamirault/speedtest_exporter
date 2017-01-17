@@ -219,6 +219,12 @@
 			"revisionTime": "2016-09-26T15:04:02Z"
 		},
 		{
+			"checksumSHA1": "Cy6n4iTn6RtXOULn1+vufS2MWpc=",
+			"path": "github.com/zpeters/speedtest/coords",
+			"revision": "58d62245401b2a60ebc0c4acaf1d5bb5b8571aa8",
+			"revisionTime": "2016-12-15T03:44:06Z"
+		},
+		{
 			"checksumSHA1": "CvvMRMDv3/NJpVjOiLb3Kr+qOtY=",
 			"path": "github.com/zpeters/speedtest/internal/coords",
 			"revision": "f77fc9e744a209979c966d1e1c33b464cb007861",
@@ -241,6 +247,36 @@
 			"path": "github.com/zpeters/speedtest/internal/stxml",
 			"revision": "f77fc9e744a209979c966d1e1c33b464cb007861",
 			"revisionTime": "2016-09-01T00:53:20Z"
+		},
+		{
+			"checksumSHA1": "vdgf5XOtpWaQpTV5nPz7QjqE3gA=",
+			"path": "github.com/zpeters/speedtest/misc",
+			"revision": "58d62245401b2a60ebc0c4acaf1d5bb5b8571aa8",
+			"revisionTime": "2016-12-15T03:44:06Z"
+		},
+		{
+			"checksumSHA1": "BKKXhxf3hfAw/EnpRMOOQVtr6co=",
+			"path": "github.com/zpeters/speedtest/print",
+			"revision": "58d62245401b2a60ebc0c4acaf1d5bb5b8571aa8",
+			"revisionTime": "2016-12-15T03:44:06Z"
+		},
+		{
+			"checksumSHA1": "qI/41r8fHJiicgcAnDicQziXDN8=",
+			"path": "github.com/zpeters/speedtest/sthttp",
+			"revision": "58d62245401b2a60ebc0c4acaf1d5bb5b8571aa8",
+			"revisionTime": "2016-12-15T03:44:06Z"
+		},
+		{
+			"checksumSHA1": "EqWlhKYeHtJhxQMXfyvT6sQOf2g=",
+			"path": "github.com/zpeters/speedtest/stxml",
+			"revision": "58d62245401b2a60ebc0c4acaf1d5bb5b8571aa8",
+			"revisionTime": "2016-12-15T03:44:06Z"
+		},
+		{
+			"checksumSHA1": "W069qAawDjVk0mrUmQVnO6xVm0Q=",
+			"path": "github.com/zpeters/speedtest/tests",
+			"revision": "58d62245401b2a60ebc0c4acaf1d5bb5b8571aa8",
+			"revisionTime": "2016-12-15T03:44:06Z"
 		},
 		{
 			"checksumSHA1": "h+pFYiRHBogczS8/F1NoN3Ata44=",
