@@ -1,0 +1,10 @@
+# Go
+speedtest_exporter
+
+# Files
+.DS_Store
+
+# Editor swap files
+*.swp
+*.swo
+*.swn
