@@ -31,4 +31,4 @@ scrape_configs:
 
   - job_name: 'speedtest'
     target_groups:
-      - targets: ['localhost:9111']
+      - targets: ['localhost:9112']
