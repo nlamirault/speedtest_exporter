@@ -38,9 +38,6 @@ type Client struct {
 // NewClient defines a new client for Speedtest
 func NewClient(configURL string, serversURL string) (*Client, error) {
 	log.Debugf("New Speedtest client %s %s", configURL, serversURL)
-	configTimeout, _ := time.ParseDuration("15s")
-	// latencyTimeout, _ := time.ParseDuration("15s")
-	// downloadTimeout, _ := time.ParseDuration("15s")
 	stClient := sthttp.NewClient(
 		&sthttp.SpeedtestConfig{
 			ConfigURL:       configURL,
@@ -53,10 +50,7 @@ func NewClient(configURL string, serversURL string) (*Client, error) {
 			UserAgent:       userAgent,
 		},
 		&sthttp.HTTPConfig{
-			// ConfigTimeout:   configTimeout,
-			// LatencyTimeout:  latencyTimeout,
-			// DownloadTimeout: downloadTimeout,
-			HTTPTimeout: configTimeout,
+			HTTPTimeout: 5 * time.Minute,
 		},
 		true,
 		"|")
