@@ -92,9 +92,6 @@ func (client *Client) NetworkMetrics() map[string]float64 {
 	uploadMbps := tester.Upload(client.Server)
 	log.Infof("Speedtest Upload: %v Mbps", uploadMbps)
 
-	// This is wrong. It retuns the same value every time.
-	// ping := client.Server.Latency
-	// Instead, use:
 	ping, err := client.SpeedtestClient.GetLatency(client.Server, client.SpeedtestClient.GetLatencyURL(client.Server))
 	if err != nil {
 		log.Fatal(err)
