@@ -1,6 +1,12 @@
 ChangeLog
 ==============
 
+# Version 0.3.0 (08/19/2019)
+
+- Use Golang modules for dependencies
+- `FIX` Ping (#14)
+- Update Makefile so make init works correctly (#13)
+- Increase HTTP Timeout (#11)
 
 # Version 0.2.0 (01/17/2017)
 
