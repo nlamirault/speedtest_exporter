@@ -91,7 +91,12 @@ func (client *Client) NetworkMetrics() map[string]float64 {
 	log.Infof("Speedtest Download: %v Mbps", downloadMbps)
 	uploadMbps := tester.Upload(client.Server)
 	log.Infof("Speedtest Upload: %v Mbps", uploadMbps)
-	ping := client.Server.Latency
+
+	ping, err := client.SpeedtestClient.GetLatency(client.Server, client.SpeedtestClient.GetLatencyURL(client.Server))
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	log.Infof("Speedtest Latency: %v ms", ping)
 	result["download"] = downloadMbps
 	result["upload"] = uploadMbps
