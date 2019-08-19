@@ -7,6 +7,7 @@
 * Develop : [![Circle CI](https://circleci.com/gh/nlamirault/speedtest_exporter/tree/develop.svg?style=svg)](https://circleci.com/gh/nlamirault/speedtest_exporter/tree/develop)
 
 This Prometheus exporter check your network connection. Metrics are :
+
 * Latency
 * Download bandwidth
 * Upload bandwidth
@@ -16,42 +17,52 @@ This Prometheus exporter check your network connection. Metrics are :
 
 You can download the binaries :
 
-* Architecture i386 [ [linux](https://bintray.com/artifact/download/nlamirault/oss/speedtest_exporter-0.2.0_linux_386) / [darwin](https://bintray.com/artifact/download/nlamirault/oss/speedtest_exporter-0.2.0_darwin_386) / [freebsd](https://bintray.com/artifact/download/nlamirault/oss/speedtest_exporter-0.2.0_freebsd_386) / [netbsd](https://bintray.com/artifact/download/nlamirault/oss/speedtest_exporter-0.2.0_netbsd_386) / [openbsd](https://bintray.com/artifact/download/nlamirault/oss/speedtest_exporter-0.2.0_openbsd_386) / [windows](https://bintray.com/artifact/download/nlamirault/oss/speedtest_exporter-0.2.0_windows_386.exe) ]
-* Architecture amd64 [ [linux](https://bintray.com/artifact/download/nlamirault/oss/speedtest_exporter-0.2.0_linux_amd64) / [darwin](https://bintray.com/artifact/download/nlamirault/oss/speedtest_exporter-0.2.0_darwin_amd64) / [freebsd](https://bintray.com/artifact/download/nlamirault/oss/speedtest_exporter-0.2.0_freebsd_amd64) / [netbsd](https://bintray.com/artifact/download/nlamirault/oss/speedtest_exporter-0.2.0_netbsd_amd64) / [openbsd](https://bintray.com/artifact/download/nlamirault/oss/speedtest_exporter-0.2.0_openbsd_amd64) / [windows](https://bintray.com/artifact/download/nlamirault/oss/speedtest_exporter-0.2.0_windows_amd64.exe) ]
-* Architecture arm [ [linux](https://bintray.com/artifact/download/nlamirault/oss/speedtest_exporter-0.2.0_linux_arm) / [freebsd](https://bintray.com/artifact/download/nlamirault/oss/speedtest_exporter-0.2.0_freebsd_arm) / [netbsd](https://bintray.com/artifact/download/nlamirault/oss/speedtest_exporter-0.2.0_netbsd_arm) ]
+* Architecture amd64 [ [linux](https://bintray.com/artifact/download/nlamirault/oss/speedtest_exporter-0.3.0_linux_amd64) / [darwin](https://bintray.com/artifact/download/nlamirault/oss/speedtest_exporter-0.3.0_darwin_amd64) / [freebsd](https://bintray.com/artifact/download/nlamirault/oss/speedtest_exporter-0.3.0_freebsd_amd64) / [netbsd](https://bintray.com/artifact/download/nlamirault/oss/speedtest_exporter-0.3.0_netbsd_amd64) / [openbsd](https://bintray.com/artifact/download/nlamirault/oss/speedtest_exporter-0.3.0_openbsd_amd64) / [windows](https://bintray.com/artifact/download/nlamirault/oss/speedtest_exporter-0.3.0_windows_amd64.exe) ]
+* Architecture arm [ [linux](https://bintray.com/artifact/download/nlamirault/oss/speedtest_exporter-0.3.0_linux_arm) ]
+* Architecture arm64 [ [linux](https://bintray.com/artifact/download/nlamirault/oss/speedtest_exporter-0.3.0_linux_arm) ]
 
 
 ## Usage
 
 Launch the Prometheus exporter :
 
-    $ speedtest_exporter -log.level=debug
-
+```bash
+$ speedtest_exporter -log.level=debug
+```
 
 ## Development
 
 * Initialize environment
 
-        $ make init
+```bash
+$ make init
+```
 
 * Build tool :
 
-        $ make build
+```bash
+$ make build
+```
 
 * Launch unit tests :
 
-        $ make test
-
+```bash
+$ make test
+```
 
 ## Local Deployment
 
 * Launch Prometheus using the configuration file in this repository:
 
-        $ prometheus -config.file=prometheus.yml
+```bash
+$ prometheus -config.file=prometheus.yml
+```
 
 * Launch exporter:
 
-        $ speedtest_exporter -log.level=debug
+```bash
+$ speedtest_exporter -log.level=debug
+```
 
 * Check that Prometheus find the exporter on `http://localhost:9090/targets`
 

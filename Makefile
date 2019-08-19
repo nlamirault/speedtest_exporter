@@ -29,7 +29,10 @@ DOCKER = docker
 GO = go
 GLIDE = glide
 
-GOX = gox -os="linux darwin windows freebsd openbsd netbsd"
+# GOX_OS = -os="linux darwin windows freebsd openbsd netbsd"
+# GOX_ARGS = "-output={{.Dir}}-$(VERSION)_{{.OS}}_{{.Arch}}"
+
+GOX_OS = -osarch="linux/amd64 linux/arm linux/arm64 darwin/amd64 freebsd/amd64 openbsd/amd64 netbsd/amd64 windows/amd64"
 GOX_ARGS = "-output={{.Dir}}-$(VERSION)_{{.OS}}_{{.Arch}}"
 
 BINTRAY_URI = https://api.bintray.com
@@ -112,7 +115,7 @@ coverage: ## Launch code coverage
 
 gox: ## Make all binaries
 	@echo -e "$(OK_COLOR)[$(APP)] Create binaries $(NO_COLOR)"
-	$(GOX) $(GOX_ARGS) github.com/nlamirault/speedtest_exporter
+	@gox $(GOX_OS) $(GOX_ARGS) github.com/nlamirault/speedtest_exporter
 
 .PHONY: binaries
 binaries: ## Upload all binaries
