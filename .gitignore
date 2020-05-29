@@ -8,3 +8,6 @@ speedtest_exporter
 *.swp
 *.swo
 *.swn
+
+# Snap
+*.snap
