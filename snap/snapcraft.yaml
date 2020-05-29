@@ -1,0 +1,24 @@
+name: speedtest-exporter
+base: core18
+version: git
+summary: A Prometheus exporter for measuring Internet connection bandwidth
+description: |
+    speedtest_exporter uses the speedtest.net network of bandwidth measurement
+    servers to measure download and upload bandwidth of an Internet connection
+    at a specific point in time, providing this information to Prometheus.
+
+grade: stable
+confinement: strict
+
+apps:
+  daemon:
+    plugs:
+      - network
+      - network-bind
+    command: speedtest_exporter
+    daemon: simple
+
+parts:
+  speedtest-exporter:
+    plugin: go
+    source: .
