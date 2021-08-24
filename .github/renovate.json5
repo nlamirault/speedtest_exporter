@@ -1,0 +1,70 @@
+{
+  "extends": [
+    "config:base",
+    ":gitSignOff"
+  ],
+  "enabled": true,
+  "timezone": "Europe/Paris",
+  "dependencyDashboard": true,
+  "dependencyDashboardTitle": "Renovate Dashboard",
+  // "gitAuthor": "Nicolas Lamirault <nlamirault@users.noreply.github.com>",
+  // "commitBody": "Signed-off-by: Nicolas Lamirault <nlamirault@users.noreply.github.com>",
+  // Do not notify on closed unmerged PRs
+  "suppressNotifications": ["prIgnoreNotification"],
+  // Do not rebase PRs
+  "rebaseWhen": "conflicted",
+  "assignees": ["@nlamirault"],
+  "reviewersFromCodeOwners": true,
+  // "labels": ["kind/renovate", "lifecycle/active", "status/review_needed"],
+  "helm-values": {
+    "fileMatch": ["kubernetes/.+\\.yaml$"]
+  },
+  "packageRules": [
+    // Labels for Package
+    {
+      "datasources": ["package"],
+      "updateTypes": ["major"],
+      "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "area/package", "dependency/package", "priority/high", "size/xs"]
+    },
+    {
+      "datasources": ["package"],
+      "updateTypes": ["minor"],
+      "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "area/package", "dependency/package", "priority/medium", "size/xs"]
+    },
+    {
+      "datasources": ["package"],
+      "updateTypes": ["patch"],
+      "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "area/package", "dependency/package", "priority/low", "size/xs"]
+    },
+    // Labels for Github Actions
+    {
+      "datasources": ["action"],
+      "updateTypes": ["major"],
+      "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "area/github", "dependency/github", "priority/high", "size/xs"]
+    },
+    {
+      "datasources": ["action"],
+      "updateTypes": ["minor"],
+      "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "area/github", "dependency/github", "priority/medium", "size/xs"]
+    },
+    {
+      "datasources": ["action"],
+      "updateTypes": ["patch"],
+      "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "area/github", "dependency/github", "priority/low", "size/xs"]
+    },
+    // Enable auto-merge docker
+    // {
+    //   "datasources": ["docker"],
+    //   "automerge": true,
+    //   "requiredStatusChecks": null,
+    //   "updateTypes": ["minor", "patch"],
+    // },
+    // Enable auto-merge helm
+    // {
+    //   "datasources": ["helm"],
+    //   "automerge": true,
+    //   "requiredStatusChecks": null,
+    //   "updateTypes": ["patch"],
+    // }
+  ]
+}
