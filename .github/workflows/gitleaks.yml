@@ -20,6 +20,6 @@ jobs:
   gitleaks:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: gitleaks-action
       uses: zricethezav/gitleaks-action@master
