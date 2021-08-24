@@ -34,8 +34,8 @@ jobs:
 
     - name: Publish Release Notes
       uses: release-drafter/release-drafter@v5.11.0
-      # with:
-      #     publish: true
+      with:
+          publish: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
