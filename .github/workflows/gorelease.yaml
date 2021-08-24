@@ -12,22 +12,37 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: Project / Release Drafter
+name: Project / Release
 
 on:
   push:
-    # branches to consider in the event; optional, defaults to all
-    branches:
-      - master
+    tags:
+      - '*'
 
 jobs:
-  update_release_draft:
+  release:
     runs-on: ubuntu-latest
     steps:
-      # Drafts your next Release notes as Pull Requests are merged into "master"
-      - uses: release-drafter/release-drafter@v5.11.0
-        # (Optional) specify config name to use, relative to .github/. Default: release-drafter.yml
-        # with:
-          # config-name: my-config.yml
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Set up Go 1.x
+      uses: actions/setup-go@v2
+      with:
+        go-version: ^1.14
+      id: go
+
+    - name: Publish Release Notes
+      uses: release-drafter/release-drafter@v5.11.0
+      # with:
+      #     publish: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.TOKEN_REPO }}
+
+    - name: Run GoReleaser
+      uses: goreleaser/goreleaser-action@v1
+      with:
+        version: latest
+        args: release --rm-dist
+      env:
+        GITHUB_TOKEN: ${{ secrets.TOKEN_REPO }}
