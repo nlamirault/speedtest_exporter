@@ -74,7 +74,7 @@ func NewClient(configURL string, serversURL string) (*Client, error) {
 	closestServers := stClient.GetClosestServers(allServers)
 	// log.Infof("Closest Servers: %s", closestServers)
 	testServer := stClient.GetFastestServer(closestServers)
-	log.Infof("Test server: %s", testServer)
+	log.Infof("Test server: %v", testServer)
 
 	return &Client{
 		Server:          testServer,
@@ -101,6 +101,6 @@ func (client *Client) NetworkMetrics() map[string]float64 {
 	result["download"] = downloadMbps
 	result["upload"] = uploadMbps
 	result["ping"] = ping
-	log.Infof("Speedtest results: %s", result)
+	log.Infof("Speedtest results: %v", result)
 	return result
 }
