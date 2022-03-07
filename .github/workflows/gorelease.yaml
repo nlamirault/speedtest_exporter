@@ -33,7 +33,7 @@ jobs:
       id: go
 
     - name: Publish Release Notes
-      uses: release-drafter/release-drafter@v5.16.1
+      uses: release-drafter/release-drafter@v5.19.0
       with:
           publish: true
       env:
