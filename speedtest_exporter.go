@@ -109,7 +109,6 @@ func main() {
 		metricsPath   = flag.String("web.telemetry-path", "/metrics", "Path under which to expose metrics.")
 		configURL     = flag.String("speedtest.config-url", "http://c.speedtest.net/speedtest-config.php?x="+uniuri.New(), "Speedtest configuration URL")
 		serverURL     = flag.String("speedtest.server-url", "http://c.speedtest.net/speedtest-servers-static.php?x="+uniuri.New(), "Speedtest server URL")
-		//interval      = flag.Int("interval", 60*time.Second, "Interval for metrics.")
 	)
 	flag.Parse()
 
@@ -121,7 +120,7 @@ func main() {
 	log.Infoln("Starting speedtest exporter", prom_version.Info())
 	log.Infoln("Build context", prom_version.BuildContext())
 
-	interval := 60 * time.Second
+	interval := 600 * time.Second
 	exporter, err := NewExporter(*configURL, *serverURL, interval)
 	if err != nil {
 		log.Errorf("Can't create exporter : %s", err)
