@@ -1,6 +1,6 @@
 module github.com/nlamirault/speedtest_exporter
 
-go 1.16
+go 1.19
 
 require (
 	github.com/dchest/uniuri v0.0.0-20160212164326-8902c56451e9
