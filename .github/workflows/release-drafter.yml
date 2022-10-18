@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Drafts your next Release notes as Pull Requests are merged into "master"
-      - uses: release-drafter/release-drafter@v5.21.0
+      - uses: release-drafter/release-drafter@v5.21.1
         # (Optional) specify config name to use, relative to .github/. Default: release-drafter.yml
         # with:
           # config-name: my-config.yml
